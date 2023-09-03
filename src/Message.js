@@ -8,7 +8,7 @@ function Message({ message, username }) {
   const isUser = username === message.username;
   return (
     <div className={`message ${isUser && "message__user"}`}>
-      <Card >
+      <Card className={isUser ? "message__usercard":"message__guestcard"} >
         <CardContent>
           <Typography variant="h5" component="h2">
             {message.username} : {message.text}
