@@ -25,7 +25,7 @@ function App() {
     db.collection("messages")
       .orderBy("timestamp", "desc")
       .onSnapshot((snapshot) => {
-        setMessages(snapshot.docs.map((doc) => doc.data()));
+        setMessages(snapshot.docs.map((doc) => ({id:doc.id,message:doc.data()})));
       });
   }, []);
 
@@ -43,6 +43,7 @@ function App() {
   };
   return (
     <div className="App">
+    <img src="https://imagedelivery.net/5MYSbk45M80qAwecrlKzdQ/03426705-e054-4210-4cf1-0fb193c0fc00/preview"></img>
       <h2>Welcome {username}</h2>
       <form>
         <FormControl>
@@ -63,8 +64,8 @@ function App() {
       </form>
 
       <FlipMove>
-        {messages.map((message) => (
-          <Message username={username} message={message} />
+        {messages.map(({ id, message }) => (
+          <Message key={id} username={username} message={data} />
         ))}
       </FlipMove>
     </div>
