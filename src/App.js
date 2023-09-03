@@ -6,7 +6,12 @@ import { InputLabel, Input } from "@mui/material";
 import Message from "./Message";
 function App() {
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState(["a", "b", "c"]);
+  const [messages, setMessages] = useState([
+    { username: "yaswanth", text: "hai" },
+    { username: "kakatiya", text: "hello" },
+    { username: "panguluri", text: "hey!" },
+
+  ]);
   const [username, setUsername] = useState('');
 
 
@@ -18,7 +23,7 @@ function App() {
   //console.log(messages);
   const sendMessage = (event) => {
     event.preventDefault();
-    setMessages([...messages, input]);
+    setMessages([...messages, {username: username, text:input}]);
     setInput("");
   }
   return (
@@ -35,7 +40,7 @@ function App() {
       </form>
       {/* message themsels */}
       {messages.map((message) => (
-        <Message text = {message}/>
+        <Message username = {username} message = {message}/>
       ))}
     </div>
   );
